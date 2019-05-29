@@ -15,8 +15,8 @@ $defaultoptions = array(
 	// wurde oder die Theme Options von Hand aufgerufen und gespeichert wurden.
     'js-version'			=> '1.0',
 	// Theme-Versionslinie, wird überschrieben durch Style.css Version
-    'src-scriptjs'                      => get_fau_template_uri() . '/js/scripts.min.js',
-    'default_logo_src'			=> get_fau_template_uri().'/img/logo-240x65.svg',
+    'src-scriptjs'                      => get_template_directory_uri() . '/js/scripts.min.js',
+    'default_logo_src'			=> get_template_directory_uri().'/img/logo-240x65.svg',
     'default_logo_height'			=> 65,
     'default_logo_width'			=> 240,
 

@@ -5,10 +5,12 @@
  */
 
 load_theme_textdomain( 'ethuil', get_template_directory() . '/languages' );
-require_once( get_template_directory() . '/functions/template-functions.php' );
-require_once( get_template_directory() . '/functions/defaults.php' );
-require_once( get_template_directory() . '/functions/customizer.php');
-$options = fau_initoptions();
+require_once( get_template_directory() . '/includes/template-functions.php' );
+require_once( get_template_directory() . '/includes/defaults.php' );
+require_once( get_template_directory() . '/includes/sanitizer.php' );
+
+require_once( get_template_directory() . '/includes/customizer.php');
+$options = ethuil_initoptions();
 
 /*-----------------------------------------------------------------------------------*/
 /* Setup
@@ -27,6 +29,13 @@ function ethuil_setup() {
         // Register Menus
 }
 add_action( 'after_setup_theme', 'ethuil_setup' );
+/*-----------------------------------------------------------------------------------*/
+/* Register Menus in Theme
+/*-----------------------------------------------------------------------------------*/
+function ethuil_register_menus() {
+    register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'ethuil' ) );
+	// Hauptnavigation
+}
 /*-----------------------------------------------------------------------------------*/
 /* Set extra init values
 /*-----------------------------------------------------------------------------------*/
@@ -90,7 +99,7 @@ function ethuil_addmetatags() {
     $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";    
     
     $googleverification = get_theme_mod('google-site-verification');
-    if ((isset( $googleverification )) && ( !fau_empty($googleverification) )) {
+    if ((isset( $googleverification )) && ( !ethuil_empty($googleverification) )) {
         $output .= '<meta name="google-site-verification" content="'.$googleverification.'">'."\n";
     }
 
@@ -191,7 +200,7 @@ add_action( 'after_setup_theme', 'ethuil_custom_header_setup' );
 /*-----------------------------------------------------------------------------------*/
 /* Load Comment Functions
 /*-----------------------------------------------------------------------------------*/
-require get_template_directory() . '/functions/comments.php';
+require get_template_directory() . '/includes/comments.php';
 
 
 /*-----------------------------------------------------------------------------------*/
