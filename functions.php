@@ -154,6 +154,22 @@ function ethuil_remove_unwanted_head_actions() {
 }
 add_action('wp_head', 'ethuil_remove_unwanted_head_actions', 0);
 /*-----------------------------------------------------------------------------------*/
+/* Remove unwanted styles
+/*-----------------------------------------------------------------------------------*/
+function ethuil_deregister_styles() {
+    wp_dequeue_style( 'wp-block-library' );
+}
+add_action( 'wp_print_styles', 'ethuil_deregister_styles', 100 );
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove unwanted scripts
+/*-----------------------------------------------------------------------------------*/
+function ethuil_deregister_scripts(){
+ wp_dequeue_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'ethuil_deregister_scripts' );
+
+/*-----------------------------------------------------------------------------------*/
 /* Change default title
 /*-----------------------------------------------------------------------------------*/
 function ethuil_wp_title( $title, $sep ) {

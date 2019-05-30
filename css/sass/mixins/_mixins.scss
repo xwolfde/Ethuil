@@ -1,10 +1,45 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : 29.05.2019, 20:50:38
-    Author     : xwolf
-*/
+//----------------------------------------------------------------------------
+// Mixins
+//----------------------------------------------------------------------------
+
+@mixin transition($duration, $params) {
+    -webkit-transition: $duration $params;
+    -ms-transition: $duration $params;
+    transition: $duration $params;
+}
+@mixin transform-translate($tx, $ty) {
+    transform: translate($tx, $ty);
+}
+
+@mixin hyphens($value) {
+    -webkit-hyphens: $value;
+    -ms-hyphens: $value;
+    hyphens: $value;
+}
+
+
+@mixin no-list() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+
+    &:before {
+	    display: none;
+    }
+}
+
+
+@function px2rem($font-size, $base-font-size: $font-size-gridbase) {
+	@return $font-size / $base-font-size + rem;
+}
+
+@mixin px2rem($font-size, $base-font-size: $font-size-gridbase, $line: $font-size * 1.46) {
+  font-size: $font-size + px; // für den IE8
+  line-height: ($line) + px;
+  font-size: px2rem($font-size, $base-font-size);
+  line-height: ($line / $base-font-size) + rem;
+}
+
+
 

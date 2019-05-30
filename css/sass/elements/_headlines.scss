@@ -1,0 +1,59 @@
+/*-----------------------------------------------------------------------------------*/
+/* Headlines
+/*-----------------------------------------------------------------------------------*/
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $colorPrimary;
+	font-weight: bold;
+	
+	em {
+	    font-style: normal;
+	}
+}
+
+
+
+
+h3, h4, h5, h6 {
+    @include hyphens(auto);
+}
+
+h1 {
+    @include px2rem($font-size-h1);
+     @include hyphens(none);
+}
+
+h2 {
+    @include px2rem($font-size-h2);
+    @include hyphens(none);
+}
+
+h3 {
+    @include px2rem($font-size-h3);
+    @include hyphens(auto);
+}
+
+h4 {
+    @include px2rem($font-size-h4);
+    @include hyphens(auto);
+}
+
+h5 {
+    @include px2rem($font-size-h5);
+    @include hyphens(auto);
+}
+
+h6 {
+    @include px2rem($font-size-h6);
+    @include hyphens(auto);
+}
+
+
+	

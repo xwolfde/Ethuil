@@ -159,6 +159,50 @@ function ethuil_get_image_attributs($id=0) {
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Add another esc_url, but also makes URL relative
+/*-----------------------------------------------------------------------------------*/
+ function ethuil_esc_url( $url) {
+     if (!isset($url)) {
+	 $url = home_url("/");
+     }
+     return ethuil_make_link_relative(esc_url($url));
+ }
+ /*-----------------------------------------------------------------------------------*/
+/* make urls relative to base url
+/*-----------------------------------------------------------------------------------*/
+function ethuil_make_link_relative($url) {
+    $current_site_url = get_site_url();   
+	if (!empty($GLOBALS['_wp_switched_stack'])) {
+        $switched_stack = $GLOBALS['_wp_switched_stack'];
+        $blog_id = end($switched_stack);
+        if ($GLOBALS['blog_id'] != $blog_id) {
+            $current_site_url = get_site_url($blog_id);
+        }
+    }
+    $current_host = parse_url($current_site_url, PHP_URL_HOST);
+    $host = parse_url($url, PHP_URL_HOST);
+    if($current_host == $host) {
+        $url = wp_make_link_relative($url);
+    }
+    return $url; 
+}
+/*-----------------------------------------------------------------------------------*/
+/* Makes absolute URL from relative URL
+/*-----------------------------------------------------------------------------------*/
+ function ethuil_make_absolute_url( $url) {
+    if (!isset($url)) {
+	$url = home_url("/");
+    } else {
+	if (substr($url,0,1)=='/') {
+	    $base = home_url();
+	    return $base.$url;
+	} else {
+	    return $url;
+	}
+    }
+ }
+
+/*-----------------------------------------------------------------------------------*/
 /* Force srcset urls to be relative
 /*-----------------------------------------------------------------------------------*/
 add_filter( 'wp_calculate_image_srcset', function( $sources ) {
@@ -167,7 +211,7 @@ add_filter( 'wp_calculate_image_srcset', function( $sources ) {
 
     foreach( $sources as &$source ) {
         if( isset( $source['url'] ) )
-            $source['url'] = fau_esc_url( $source['url']);
+            $source['url'] =  ethuil_esc_url( $source['url']);
     }
     return $sources;
 

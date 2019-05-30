@@ -1,0 +1,91 @@
+/*----------------------------------------------------------------------------*/
+/* Blockquotes, Cites
+/*----------------------------------------------------------------------------*/
+
+
+blockquote {
+	padding-left: 50px;
+	min-height: 50px;
+	margin: 10px;
+	border: none;
+	font-family: $fontStackSerifs;
+	font-style: italic;
+	position: relative;
+	
+	@include px2rem($font-size-quotes);
+	
+	
+	p {
+		font-family: $fontStackSerifs;
+		@include px2rem($font-size-quotes);
+		font-weight: 400;
+		font-style: italic;
+		
+		strong {
+		    font-weight: bolder; 
+		}
+	}
+	
+	
+	
+	small,
+	cite { 
+	    display: block; 
+	    text-align: right;
+	    @include px2rem($font-size-quotes-cites);
+	    color: $colorTextLight;
+	    &:before { content: '\2014 \00A0'; }
+
+	}
+	
+	
+	&.pull-right {
+	    border-right: none;
+	    padding-right: 50px;
+	    &::before {
+		content: "";
+	    }
+	    &::after {
+		content: "\201C"; // Unicode for Left Double Quote
+		font-family: Georgia, serif;
+		font-size: 70px;
+		font-weight: bold;
+		color: $colorTextLight; //lighten($color-text,50%); 
+
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	    }
+	    
+	}
+	
+	
+	&::before {
+            content: "\201C"; // Unicode for Left Double Quote
+            font-family: Georgia, serif;
+            font-size: 70px;
+            font-weight: bold;
+            color: $colorTextLight; //lighten($color-text,50%); 
+            position: absolute;
+            left: 10px;
+            top: 10px;
+    
+        }
+	
+	
+        &::after{
+            // Reset to make sure
+            content: "";
+        }
+}
+
+
+cite {
+    color: $colorTextLight; 
+    font-weight: normal;
+  
+    &.text {
+	color: inherit;
+    }
+}
+
