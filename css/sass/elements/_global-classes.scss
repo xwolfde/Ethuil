@@ -2,6 +2,11 @@
 /* Global Classes
 /*----------------------------------------------------------------------------*/
 
+
+::selection {
+    background-color: #ffc107;
+}
+
 .screen-reader-text {
     @extend .sr-only;
 }
