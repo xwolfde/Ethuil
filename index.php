@@ -6,14 +6,17 @@
 
 get_header(); 
 ?>
-<main>
+<main id="droppoint">
 <?php
-    while ( have_posts() ) { 
-        the_post();  
-        the_content(); 
-        
-        echo wp_link_pages(); 
-    } 
+    if (have_posts()) {
+        while ( have_posts() ) { 
+            the_post();  
+            $format = get_post_format() ? : 'post';
+            get_template_part( 'template-parts/index', $format );
+        } 
+    } else {
+        get_template_part( 'template-parts/index', 'not-found' );
+    }
     ?>
 </main>	
 <?php 
