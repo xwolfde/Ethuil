@@ -6,6 +6,13 @@
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Register Menus in Theme
+/*-----------------------------------------------------------------------------------*/
+function ethuil_register_menus() {
+    register_nav_menu( 'main-menu', __( 'Hauptnavigation', 'ethuil' ) );
+	// Hauptnavigation
+}
+/*-----------------------------------------------------------------------------------*/
 /* Walker for main menu  
 /*-----------------------------------------------------------------------------------*/
 class Walker_Main_Menu extends Walker_Nav_Menu {
@@ -17,7 +24,7 @@ class Walker_Main_Menu extends Walker_Nav_Menu {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 	    $this->level++;
 	    $this->count[$this->level] = 0;
-	    $output .= '<ul class="sub-menu level'.$this->level.'">';
+	    $output .= '<ul>';
 	}
 
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
@@ -35,9 +42,6 @@ class Walker_Main_Menu extends Walker_Nav_Menu {
 	    // Generate Classes. Dont use WordPress default, cause i dont want to
 	    // get all those unused data filled up my html
 
-
-		$classes[] = 'menu-item-' . $item->ID;
-		$classes[] = 'level' . $level;
 
 	    if (in_array("menu-item-has-children",$item->classes)) {
 		$classes[] = 'has-sub';
@@ -102,7 +106,8 @@ function ethuil_cleanup_menuclasses($currentarray = array()) {
     $menugarbage = array(
 	"menu-item-type-post_type",
 	"menu-item-object-page",
-	"menu-item-has-children"
+	"menu-item-has-children",
+        "menu-item"
     );
     return array_diff($currentarray,$menugarbage);
 }

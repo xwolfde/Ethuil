@@ -8,7 +8,7 @@ load_theme_textdomain( 'ethuil', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/includes/template-functions.php' );
 require_once( get_template_directory() . '/includes/defaults.php' );
 require_once( get_template_directory() . '/includes/sanitizer.php' );
-
+require_once( get_template_directory() . '/includes/menu.php' );
 require_once( get_template_directory() . '/includes/customizer.php');
 $options = ethuil_initoptions();
 
@@ -21,21 +21,14 @@ function ethuil_setup() {
     if ( ! isset( $content_width ) ) $content_width = $defaultoptions['content-width'];
 
 
-    add_theme_support( 'html5');
+    add_theme_support('html5');
     add_theme_support('title-tag');
-    add_theme_support( 'post-thumbnails' );
+    add_theme_support('post-thumbnails' );
         // Add Thumbnails
-    ethuil_register_menus();
-        // Register Menus
+
 }
 add_action( 'after_setup_theme', 'ethuil_setup' );
-/*-----------------------------------------------------------------------------------*/
-/* Register Menus in Theme
-/*-----------------------------------------------------------------------------------*/
-function ethuil_register_menus() {
-    register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'ethuil' ) );
-	// Hauptnavigation
-}
+
 /*-----------------------------------------------------------------------------------*/
 /* Set extra init values
 /*-----------------------------------------------------------------------------------*/
@@ -51,6 +44,17 @@ function ethuil_custom_init() {
     remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
     remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
     remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    
+    $showapiurl = get_theme_mod('advanced_headerinfo_show_apiurl');
+        // if false, remove link to wp-json from head
+    if (!$showapiurl) {
+        remove_action( 'wp_head', 'rest_output_link_wp_head', 10);    
+        remove_action( 'template_redirect', 'rest_output_link_header', 11);
+    }    
+   
+
+    ethuil_register_menus();
+        // Register Menus
 }
 add_action( 'init', 'ethuil_custom_init' );
 
@@ -103,12 +107,23 @@ function ethuil_addmetatags() {
         $output .= '<meta name="google-site-verification" content="'.$googleverification.'">'."\n";
     }
 
-    // Adds RSS feed links to <head> for posts and comments.
-    // add_theme_support( 'automatic-feed-links' );
-    // Will post both: feed and comment feed; To use only main rss feed, i have to add it manually in head
-    $title = sanitize_text_field(get_bloginfo( 'name' ));
-    $output .= '<link rel="alternate" type="application/rss+xml" title="'.$title.' - RSS 2.0 Feed" href="'.get_bloginfo( 'rss2_url').'">'."\n";
+
+    $showfeedurl = get_theme_mod('advanced_headerinfo_show_feedurl');
+        // if false, remove link to feed from head
+    $showcommenturl = get_theme_mod( 'advanced_headerinfo_show_commenturl');
+        // if false, remove link to comment feed from head
     
+    if ($showfeedurl) {
+        if ($showcommenturl) {
+            add_theme_support( 'automatic-feed-links' );
+                // Adds RSS feed links to <head> for posts and comments.
+        } else {
+            $title = sanitize_text_field(get_bloginfo( 'name' ));
+            $output .= '<link rel="alternate" type="application/rss+xml" title="'.$title.' - RSS 2.0 Feed" href="'.get_bloginfo( 'rss2_url').'">'."\n";
+            // To use only main rss feed, i have to add it manually in head
+        }
+    }
+       
     echo $output;
 }
 add_action('wp_head', 'ethuil_addmetatags',1);

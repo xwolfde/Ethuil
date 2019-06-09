@@ -1,0 +1,28 @@
+//-----------------------------------------------------------------------------
+// Main Menu
+//-----------------------------------------------------------------------------
+
+.main-menu {
+    @extend .navbar;
+    ul {
+        @extend .navbar-nav;
+        @extend .mr-auto;
+        
+        li {
+            @extend .nav-item;
+            
+            a {
+                @extend .nav-link;
+            }
+            &.has-sub {
+            
+                a {
+                    
+                }
+                ul {
+                    @extend .dropdown-menu;
+                }
+            }
+        }
+    }
+}

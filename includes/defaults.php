@@ -8,29 +8,34 @@ $OPTIONS_NAME = 'ethuil_theme_options';
     // Name des Options-Array
 
 $defaultoptions = array(
-    'optiontable-version'		=> 1,
+    'optiontable-version'                   => 3,
 	// zaehlt jedesmal hoch, wenn neue Optionen eingefuegt werden 
 	// oder Default Optionen geaendert werden. Vorhandene Defaultoptions 
 	// in der Options-Table werden nur dann geändert, wenn der Wert erhöht 
 	// wurde oder die Theme Options von Hand aufgerufen und gespeichert wurden.
-    'js-version'			=> '1.0',
+    'js-version'                            => '1.0',
 	// Theme-Versionslinie, wird überschrieben durch Style.css Version
-    'src-scriptjs'                      => get_template_directory_uri() . '/js/scripts.min.js',
-    'default_logo_src'			=> get_template_directory_uri().'/img/logo-240x65.svg',
-    'default_logo_height'			=> 65,
-    'default_logo_width'			=> 240,
+    'src-scriptjs'                          => get_template_directory_uri() . '/js/scripts.min.js',
+    'default_logo_src'                      => get_template_directory_uri().'/img/logo-240x65.svg',
+    'default_logo_height'                   => 65,
+    'default_logo_width'                    => 240,
 
     
-    'content-width'			=> 616,
-    'content-width-fullpage'		=> 940,
+    'content-width'                         => 616,
+    'content-width-fullpage'                => 940,
     
-    'advanced_activate_post_comments'   => true,
-    'advanced_post_active_subtitle' => true,    
-    'advanced_comments_notes_before'    => '',
-    'advanced_comments_disclaimer'  => '',
-     'google-site-verification'	    => '',
+    'advanced_activate_post_comments'       => true,
+    'advanced_post_active_subtitle'         => true,    
+    'advanced_comments_notes_before'        => '',
+    'advanced_comments_disclaimer'          => '',
+    'google-site-verification'              => '',
     
-    
+    'advanced_headerinfo_show_apiurl'       => false,
+        // if false, remove link to wp-json from head
+    'advanced_headerinfo_show_feedurl'      => true,
+        // if false, remove link to feed from head
+    'advanced_headerinfo_show_commenturl'   => false,
+        // if false, remove link to comment feed from head
 ); 
 
 $content_width =$defaultoptions['content-width'];
@@ -148,10 +153,34 @@ $setoptions = array(
                   'label'   => __( 'Zur Verifikation der Website als Property in den <a target="_blank" href="https://www.google.com/webmasters/tools/home">Google Webmaster Tools</a> wird die Methode über den HTML-Tag ausgewählt. Google erstellt dann auf der Einrichtungsseite eine HTML-Anweisung. Von dieser Anweisung kopiert man den Bestandteil, der im Attribut "content" angegeben ist. <br>Beispiel: <br>Google gibt den HTML-Code: &nbsp; &nbsp;<code>&lt;meta name="google-site-verification" content="BBssyCpddd8" /&gt;</code><br>  Dann geben Sie dies ein: <code>BBssyCpddd8</code> .', 'ethuil' ),               
                   'default' => $defaultoptions['google-site-verification'],
 		     'parent'  => 'bedienung'
-              ), 
+                ), 
+                'metadaten'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Metadaten', 'ethuil' ),                      
+                ),
+                'advanced_headerinfo_show_apiurl'	=> array(
+                  'type'    => 'toggle',
+                  'title'   => __( 'API-URL', 'ethuil' ),
+                  'label'   => __( 'Zeige die API-URL zur WP-JSON Schnittstelle im Metadatenbereich der Seite an.', 'ethuil' ),                
+                  'default' => $defaultoptions['advanced_headerinfo_show_apiurl'],
+		  'parent'  => 'metadaten'
+                ),  
+                'advanced_headerinfo_show_feedurl'	=> array(
+                  'type'    => 'toggle',
+                  'title'   => __( 'Feed-URL', 'ethuil' ),
+                  'label'   => __( 'Zeige die URL zum RSS Feed der Seite im Metabereich an.', 'ethuil' ),                
+                  'default' => $defaultoptions['advanced_headerinfo_show_feedurl'],
+		  'parent'  => 'metadaten'
+                ),  
+                'advanced_headerinfo_show_commenturl'	=> array(
+                  'type'    => 'toggle',
+                  'title'   => __( 'Kommentar-Feed-URL', 'ethuil' ),
+                  'label'   => __( 'Zeige die URL zu dem Kommentar-Feed der Seite im Metabereich an.', 'ethuil' ),                
+                  'default' => $defaultoptions['advanced_headerinfo_show_commenturl'],
+		  'parent'  => 'metadaten'
+                ),  
 	    ),    
 	),    
 
     )
 );
-	       

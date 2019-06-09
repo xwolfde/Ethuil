@@ -33,7 +33,7 @@ function ethuil_customizer_settings( $wp_customize ) {
 	    // self defined boolean
 
     );
-    $var = apply_filters('fau_setoptions',$setoptions[$OPTIONS_NAME]);
+    $var = apply_filters('ethuil_setoptions',$setoptions[$OPTIONS_NAME]);
     
     foreach($var as $tab => $value) {        
 	$tabtitel = $value['tabtitle'];    
@@ -189,7 +189,7 @@ function ethuil_customizer_settings( $wp_customize ) {
 			    $wp_customize->add_setting( $optionid , array(
 				'default'     => $default,
 				'transport'   => 'refresh',
-				'sanitize_callback' => 'fau_sanitize_customizer_bool'
+				'sanitize_callback' => 'ethuil_sanitize_customizer_bool'
 			    ) );
 			     $wp_customize->add_control( $optionid, array(
 				    'label'             => $title,
@@ -203,7 +203,7 @@ function ethuil_customizer_settings( $wp_customize ) {
 			    $wp_customize->add_setting( $optionid, array(
 					    'default' => 0,
 					    'transport' => 'refresh',
-					    'sanitize_callback' => 'fau_sanitize_customizer_toggle_switch'
+					    'sanitize_callback' => 'ethuil_sanitize_customizer_toggle_switch'
 				    )
 			    );
 			    $wp_customize->add_control( new WP_Customize_Control_Toggle_Switch( $wp_customize, $optionid, array(
@@ -216,7 +216,7 @@ function ethuil_customizer_settings( $wp_customize ) {
 			    $wp_customize->add_setting( $optionid , array(
 				'default'     => $default,
 				'transport'   => 'refresh',
-				'sanitize_callback' => 'fau_sanitize_customizer_range'
+				'sanitize_callback' => 'ethuil_sanitize_customizer_range'
 			    ) );
 			    
 			    $min = 0;
@@ -346,7 +346,7 @@ function ethuil_customizer_settings( $wp_customize ) {
 			    $wp_customize->add_setting( $optionid , array(
 				'default'     => $default,
 				'transport'   => 'refresh',
-				'sanitize_callback' => 'fau_sanitize_customizer_number'	
+				'sanitize_callback' => 'ethuil_sanitize_customizer_number'	
 			    ) );
 			     $wp_customize->add_control( $optionid, array(
 				    'label'             => $title,
