@@ -2,11 +2,16 @@
 // Main Menu
 //-----------------------------------------------------------------------------
 
-.main-menu {
-    @extend .navbar;
+#pageheader nav {
+    #navbarSupportedContent {
+     //   @extend .collapse;
+        @extend .navbar-collapse;
+    }
+    
     ul {
         @extend .navbar-nav;
         @extend .mr-auto;
+        flex-direction: row;
         
         li {
             @extend .nav-item;
@@ -15,12 +20,16 @@
                 @extend .nav-link;
             }
             &.has-sub {
-            
+                @extend .dropdown;
+                
                 a {
-                    
+                     @extend .dropdown-toggle;
                 }
                 ul {
                     @extend .dropdown-menu;
+                    li {
+                        @extend .dropdown-item;
+                    }
                 }
             }
         }

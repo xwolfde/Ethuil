@@ -1,0 +1,13 @@
+//-----------------------------------------------------------------------------
+// Branding
+//-----------------------------------------------------------------------------
+
+
+.branding {
+    @extend .navbar-brand; 
+    @include px2rem($font-size-branding-title);
+
+    .description {
+        @include px2rem($font-size-branding-desc);
+    }
+}

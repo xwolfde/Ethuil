@@ -30,6 +30,9 @@ $defaultoptions = array(
     'advanced_comments_disclaimer'          => '',
     'google-site-verification'              => '',
     
+    'display_site_description'              => false,
+        // if true, show the website description in the header
+    
     'advanced_headerinfo_show_apiurl'       => false,
         // if false, remove link to wp-json from head
     'advanced_headerinfo_show_feedurl'      => true,
@@ -106,7 +109,7 @@ $setoptions = array(
                 'postoptions'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Beiträge', 'ethuil' ),                      
-              ),
+                ),
                 'advanced_activate_post_comments'		  => array(
                   'type'    => 'toggle',
                   'title'   => __( 'Kommentarfunktion', 'ethuil' ),
@@ -127,6 +130,18 @@ $setoptions = array(
                   'label'   => __( 'Hinweistext zur Abgrenzung zum Inhalt der Kommentare.', 'ethuil' ),                
                   'default' => $defaultoptions['advanced_comments_disclaimer'],
 		  'parent'  => 'postoptions'
+		), 
+               
+               'headerinfo'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Allgemeines', 'ethuil' ),                      
+                ),
+                'display_site_description'		  => array(
+                  'type'    => 'toggle',
+                  'title'   => __( 'Website Beschreibung', 'ethuil' ),
+                  'label'   => __( 'Zeigte die Website Beschreibung bei dem Logo an.', 'ethuil' ),                
+                  'default' => $defaultoptions['display_site_description'],
+		  'parent'  => 'headerinfo'
 		), 
           )
        ),

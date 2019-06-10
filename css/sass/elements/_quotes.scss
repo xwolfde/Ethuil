@@ -3,9 +3,9 @@
 /*----------------------------------------------------------------------------*/
 
 blockquote {
-	padding-left: 50px;
+	padding-left: 70px;
 	min-height: 50px;
-	margin: 10px;
+	margin: 30px 20px;
 	border: none;
 	font-family: $fontStackSerifs;
 	font-style: italic;
@@ -17,7 +17,7 @@ blockquote {
 	p {
 		font-family: $fontStackSerifs;
 		@include px2rem($font-size-quotes);
-		font-weight: 400;
+		font-weight: bold;
 		font-style: italic;
 		
 		strong {

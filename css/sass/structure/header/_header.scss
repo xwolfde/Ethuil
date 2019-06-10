@@ -2,13 +2,22 @@
 /* Header
 /*----------------------------------------------------------------------------*/
 
-header {
+#pageheader {
     @extend .container;
+    @extend .navbar;
+    @extend .navbar-expand-md;
+    @extend .navbar-light;
+//    @extend .fixed-top;
 }
+
+
 
 @import  "skiplinks";
 // Skiplinks
 
+@import "branding";
+    // Branding
+    
 @import  "mainmenu";
 // Main Menu
 

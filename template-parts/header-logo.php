@@ -6,7 +6,6 @@
 
 ?>
 <div class="branding" role="banner" itemscope itemtype="http://schema.org/Organization">
-    <p class="logo">
     <?php 
     if ( ! is_front_page() ) {
         echo '<a itemprop="url" rel="home" href="'.home_url( '/' ).'">';
@@ -35,9 +34,13 @@
     if ( ! is_front_page() ) {
         echo "</a>";
     } 
-    echo "</p>";
+
     $desc = get_bloginfo( 'description' );
-    if (! ethuil_empty($desc)) {
+    $showdesc = get_theme_mod( 'display_site_description');
+        // if false, remove link to comment feed from head
+    
+     
+    if ((! ethuil_empty($desc)) && ($showdesc)) {
         echo '<p class="description" itemprop="description">'.$desc.'</p>';
     }
     ?>
